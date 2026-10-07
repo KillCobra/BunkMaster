@@ -1,6 +1,9 @@
 import React from "react";
 import { Composition, continueRender, delayRender, staticFile } from "remotion";
 import { Trailer } from "./film/Trailer";
+import { TrailerV } from "./filmv/TrailerV";
+import { Meme } from "./meme/Meme";
+import memeCues from "./meme/cues.json";
 import { Launch } from "./launch/Launch";
 import { Steam } from "./steam/Steam";
 import { DURATION as STEAM_DURATION } from "./steam/cues";
@@ -64,6 +67,29 @@ export const Root: React.FC = () => (
     calculateMetadata={({ props }) => ({
       fps: props.fps,
       durationInFrames: Math.round(LAUNCH_DURATION * props.fps),
+    })}
+  />
+  <Composition
+    id="Meme"
+    component={Meme}
+    width={1080}
+    height={1920}
+    fps={60}
+    durationInFrames={Math.round(memeCues.duration * 60)}
+    defaultProps={{ fps: 60 } as Props}
+    calculateMetadata={({ props }) => ({ fps: props.fps, durationInFrames: Math.round(memeCues.duration * props.fps) })}
+  />
+  <Composition
+    id="TrailerV"
+    component={TrailerV}
+    width={1080}
+    height={1920}
+    fps={60}
+    durationInFrames={Math.round(DURATION * 60)}
+    defaultProps={{ fps: 60 } as Props}
+    calculateMetadata={({ props }) => ({
+      fps: props.fps,
+      durationInFrames: Math.round(DURATION * props.fps),
     })}
   />
   <Composition

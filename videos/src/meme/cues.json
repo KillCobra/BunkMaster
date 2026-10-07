@@ -1,0 +1,15 @@
+{
+  "duration": 18.75,
+  "stand": 0.3,
+  "sneak": 0.7,
+  "yell": 3.75,
+  "spot": 4.6875,
+  "picker": 5.625,
+  "pick": 7.5,
+  "shout": 7.65,
+  "betray": 7.96875,
+  "out": 9.375,
+  "detention": 11.71875,
+  "end": 15.0,
+  "bpm": 128
+}

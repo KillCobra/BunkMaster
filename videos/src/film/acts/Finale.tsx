@@ -136,6 +136,27 @@ export const Ranks: React.FC<{ t: number }> = ({ t }) => {
   );
 };
 
+// ---------------------------------------------------------------- the end-card stamp: COMING SOON, pressed on 16.2
+export const COMING_SOON_AT = b(16, 2);
+export const ComingSoon: React.FC<{ t: number; size: number; at?: number }> = ({ t, size, at = COMING_SOON_AT }) => {
+  if (t < at) return null;
+  const s = slam(t, at, 2.8, 0.26);
+  const press = Math.exp(-(t - at) / 0.1);
+  return (
+    <div style={{ scale: `${s}`, rotate: `${-4 - (s - 1) * 6}deg`, transformOrigin: "50% 60%", display: "inline-block", paddingTop: press * 6 }}>
+      <div
+        style={{
+          ...font, fontSize: size, color: "#fff", background: C.red, borderRadius: size * 0.22,
+          border: `${size * 0.07}px solid ${C.ink}`, padding: `${size * 0.1}px ${size * 0.34}px ${size * 0.14}px`,
+          boxShadow: `0 ${size * 0.1 - press * size * 0.05}px 0 ${C.ink}`, textShadow: `0 ${size * 0.04}px 0 rgba(0,0,0,0.35)`,
+        }}
+      >
+        COMING SOON
+      </div>
+    </div>
+  );
+};
+
 // ---------------------------------------------------------------- bars 15-16: the diorama and the logo
 const A = 36; // cube half-width
 const HERO_BOX = voxelBounds("hero", A);
@@ -205,7 +226,12 @@ export const Logo: React.FC<{ t: number }> = ({ t }) => {
             );
           })}
         </div>
+        <div style={{ marginTop: 44, marginLeft: 6 }}>
+          <ComingSoon t={t} size={120} />
+        </div>
       </div>
+      <Shockwave t={t} at={COMING_SOON_AT} x={1330} y={940} color="#ffffff" r={900} width={40} dur={0.45} />
+      <Burst t={t} at={COMING_SOON_AT} x={1330} y={940} colors={[C.red, C.gold, "#fff"]} seed={95} power={900} n={14} size={14} />
       <Shockwave t={t} at={T0} x={600} y={720} color="#ffffff" r={1200} width={60} dur={0.5} />
       <Shockwave t={t} at={bunkAt} x={1260} y={290} color={C.gold} r={900} width={40} dur={0.45} />
       <Shockwave t={t} at={masterAt} x={1360} y={490} color={C.gold} r={900} width={40} dur={0.45} />
